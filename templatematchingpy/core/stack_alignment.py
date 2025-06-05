@@ -24,7 +24,7 @@ class StackAligner:
         """
         self.config = config or AlignmentConfig()
         self.matcher = TemplateMatchingEngine()
-        
+
         # Store alignment results
         self.displacements: List[Tuple[float, float]] = []
         self.translation_matrices: Optional[np.ndarray] = None  # Shape: [nframes, 3, 3]
@@ -132,16 +132,16 @@ class StackAligner:
         else:
             dx = x - peak_x
             dy = y - peak_y
-        
+
         return dx, dy
 
     def _create_translation_matrix(self, dx: float, dy: float) -> np.ndarray:
         """Create 3x3 homogeneous translation matrix.
-        
+
         Args:
             dx: Translation in x direction
             dy: Translation in y direction
-            
+
         Returns:
             3x3 homogeneous transformation matrix
         """
@@ -151,10 +151,7 @@ class StackAligner:
         return matrix
 
     def apply_translation(
-        self, 
-        image: np.ndarray, 
-        matrix: np.ndarray,
-        **kwargs: Optional[dict]
+        self, image: np.ndarray, matrix: np.ndarray, **kwargs: Optional[dict]
     ) -> np.ndarray:
         """Apply translation to an image using affine transformation.
 
@@ -171,8 +168,8 @@ class StackAligner:
         # Convert 3x3 to 2x3 for cv2.warpAffine
         M = matrix[:2, :]
         # Set default borderMode if not provided in kwargs
-        if 'borderMode' not in kwargs:
-            kwargs['borderMode'] = cv2.BORDER_CONSTANT
+        if "borderMode" not in kwargs:
+            kwargs["borderMode"] = cv2.BORDER_CONSTANT
 
         # Apply translation with border replication to handle edge regions
         return cv2.warpAffine(
@@ -183,28 +180,34 @@ class StackAligner:
             **kwargs,
         )
 
-    def get_alignment(self, data_type: str) -> Union[List[Tuple[float, float]], np.ndarray]:
+    def get_alignment(
+        self, data_type: str
+    ) -> Union[List[Tuple[float, float]], np.ndarray]:
         """Retrieve stored displacements and translation matrices.
-        
+
         Args:
             data_type: Type of data to retrieve ('alignment' or 'translation_mat')
-        
+
         Returns:
             Either:
                 - displacements: List of (dx, dy) for each slice (if data_type='alignment')
                 - translation_matrices: numpy array of shape [nframes, 3, 3] (if data_type='translation_mat')
-                
+
         Raises:
             RuntimeError: If no registration has been performed
             ValueError: If data_type is not 'alignment' or 'translation_mat'
         """
         if not self.is_registered:
-            raise RuntimeError("No registration has been performed. Call register_stack() first.")
-        
-        if data_type not in ['alignment', 'translation_mat']:
-            raise ValueError(f"Invalid data_type '{data_type}'. Must be 'alignment' or 'translation_mat'.")
-        
-        if data_type == 'alignment':
+            raise RuntimeError(
+                "No registration has been performed. Call register_stack() first."
+            )
+
+        if data_type not in ["alignment", "translation_mat"]:
+            raise ValueError(
+                f"Invalid data_type '{data_type}'. Must be 'alignment' or 'translation_mat'."
+            )
+
+        if data_type == "alignment":
             return self.displacements.copy()
         else:  # data_type == 'translation_mat'
             return self.translation_matrices.copy()
@@ -213,18 +216,20 @@ class StackAligner:
         self,
         image_stack: np.ndarray,
         bbox: Tuple[int, int, int, int],
-        reference_slice: int = 0
+        reference_slice: int = 0,
+        reference_type: str = "static",
     ) -> np.ndarray:
         """Register image stack and store alignment parameters.
-        
+
         Args:
             image_stack: 3D numpy array (slices, height, width)
             bbox: Template bounding box (x, y, width, height)
-            reference_slice: Index of reference slice
-            
+            reference_type: 'static' uses fixed reference_slice,
+                        'dynamic' uses previous slice(s) as reference
+            reference_slice: For static: slice index. For dynamic: negative offset (-1, -2, etc.)
         Returns:
             aligned_stack: Registered image stack
-            
+
         Side Effects:
             - Stores displacements in self.displacements
             - Stores translation matrices in self.translation_matrices
@@ -235,10 +240,18 @@ class StackAligner:
 
         n_slices = image_stack.shape[0]
 
-        if not (0 <= reference_slice < n_slices):
-            raise IndexError(
-                f"Reference slice {reference_slice} out of bounds [0, {n_slices - 1}]"
-            )
+        # Validate reference_slice based on reference_type
+        if reference_type == "static":
+            if not (0 <= reference_slice < n_slices):
+                raise IndexError(
+                    f"Reference slice {reference_slice} out of bounds [0, {n_slices - 1}]"
+                )
+        else:  # dynamic
+            if reference_slice >= 0:
+                raise ValueError(
+                    f"For dynamic reference_type, reference_slice must be negative (got {reference_slice}). "
+                    f"Use -1 for previous slice, -2 for two slices back, etc."
+                )
 
         x, y, w, h = bbox
 
@@ -251,28 +264,56 @@ class StackAligner:
         # Clear previous registration data and initialize arrays
         self.displacements = []
         self.translation_matrices = np.zeros((n_slices, 3, 3), dtype=np.float32)
-        
-        aligned_stack = image_stack.copy()
 
-        # Extract reference template
-        reference = image_stack[reference_slice, y : y + h, x : x + w]
+        aligned_stack = image_stack.copy()
+        current_bbox = list(bbox)  # [x, y, w, h] - will be updated for dynamic
+        cumulative_dx, cumulative_dy = 0.0, 0.0
 
         for i in range(n_slices):
-            if i == reference_slice:
-                # Reference slice has no displacement
-                self.displacements.append((0.0, 0.0))
-                self.translation_matrices[i] = self._create_translation_matrix(0.0, 0.0)
-                continue
+            if reference_type == "static":
+                if i == reference_slice:
+                    self.displacements.append((0.0, 0.0))
+                    self.translation_matrices[i] = self._create_translation_matrix(
+                        0.0, 0.0
+                    )
+                    continue
+                reference = image_stack[
+                    reference_slice,
+                    bbox[1] : bbox[1] + bbox[3],
+                    bbox[0] : bbox[0] + bbox[2],
+                ]
+                current_bbox = list(bbox)
+            else:  # dynamic
+                if i == 0:
+                    self.displacements.append((0.0, 0.0))
+                    self.translation_matrices[i] = self._create_translation_matrix(
+                        0.0, 0.0
+                    )
+                    continue
 
-            # Calculate displacement for this slice
-            dx, dy = self.align_slice(image_stack[i], reference, bbox)
-            self.displacements.append((dx, dy))
-            
-            # Create and store translation matrix
-            matrix = self._create_translation_matrix(dx, dy)
+                # Use previous slice(s) as reference
+                ref_idx = max(
+                    0, i + reference_slice
+                )  # reference_slice is negative offset
+                x, y, w, h = current_bbox
+                reference = aligned_stack[ref_idx, y : y + h, x : x + w]
+
+            # Calculate displacement
+            dx, dy = self.align_slice(image_stack[i], reference, tuple(current_bbox))
+
+            if reference_type == "dynamic":
+                # Update cumulative bbox location
+                current_bbox[0] = int(bbox[0] - dx)
+                current_bbox[1] = int(bbox[1] - dx)
+
+                # Store cumulative displacement
+                self.displacements.append((cumulative_dx, cumulative_dy))
+                matrix = self._create_translation_matrix(cumulative_dx, cumulative_dy)
+            else:
+                self.displacements.append((dx, dy))
+                matrix = self._create_translation_matrix(dx, dy)
+
             self.translation_matrices[i] = matrix
-
-            # Apply translation to align the slice
             aligned_stack[i] = self.apply_translation(image_stack[i], matrix=matrix)
 
         self.is_registered = True
@@ -280,35 +321,37 @@ class StackAligner:
 
     def transform_stack(self, image_stack: np.ndarray) -> np.ndarray:
         """Apply stored translation matrices to a new image stack.
-        
+
         Args:
             image_stack: 3D numpy array to be transformed
-            
+
         Returns:
             transformed_stack: Stack with stored transformations applied
-            
+
         Raises:
             RuntimeError: If no registration has been performed
             ValueError: If stack dimensions don't match stored parameters
         """
         if not self.is_registered:
-            raise RuntimeError("No registration has been performed. Call register_stack() first.")
-        
+            raise RuntimeError(
+                "No registration has been performed. Call register_stack() first."
+            )
+
         if image_stack.ndim != 3:
             raise ValueError(f"Expected 3D image stack, got {image_stack.ndim}D")
-        
+
         if image_stack.shape[0] != self.translation_matrices.shape[0]:
             raise ValueError(
                 f"Stack has {image_stack.shape[0]} slices but {self.translation_matrices.shape[0]} "
                 f"transformation matrices stored. Stack dimensions must match registration."
             )
-        
+
         transformed_stack = image_stack.copy()
-        
+
         for i in range(self.translation_matrices.shape[0]):
             matrix = self.translation_matrices[i]
             transformed_stack[i] = self.apply_translation(image_stack[i], matrix=matrix)
-        
+
         return transformed_stack
 
 
@@ -340,5 +383,5 @@ def register_stack(
     """
     aligner = StackAligner(config)
     aligned_stack = aligner.register_stack(image_stack, bbox, reference_slice)
-    displacements = aligner.get_alignment('alignment')
+    displacements = aligner.get_alignment("alignment")
     return aligned_stack, displacements
