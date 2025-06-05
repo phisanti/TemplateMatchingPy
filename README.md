@@ -14,7 +14,7 @@ This registration package is limited to Translation operations (Movements in the
 *Before and after alignment comparison showing drift correction in a microscopy time-lapse sequence. The left panel shows the original drifting images, while the right panel demonstrates the stabilized result after template matching alignment.*
 
 
-## 📦 Installation
+## Installation
 
 ```bash
 pip install git+https://github.com/yourusername/TemplateMatchingPy.git
@@ -112,7 +112,7 @@ cv2.imwritemulti("aligned_stack.tiff", aligned_frames)
 print(f"Alignment completed with {len(displacements)} slices")
 print(f"Displacements: {displacements}")
 ```
-## 🔧 Configuration Options
+## Configuration Options
 
 ### AlignmentConfig Parameters
 
@@ -139,106 +139,6 @@ config = AlignmentConfig(
 | 4 | TM_CCOEFF | Correlation Coefficient | General purpose |
 | **5** | **TM_CCOEFF_NORMED** | **Normalized Correlation Coefficient** | **Recommended** |
 
-## 📖 Documentation
-
-- **[API Reference](docs/api_reference.md)**: Complete function and class documentation
-- **[Tutorial](docs/tutorial.md)**: Step-by-step guide with real examples
-- **[Examples](examples/)**: Ready-to-run example scripts
-  - [`basic_usage.py`](examples/basic_usage.py): Getting started example
-  - [`advanced_alignment.py`](examples/advanced_alignment.py): Advanced features and comparison
-  - [`batch_processing.py`](examples/batch_processing.py): Batch processing workflow
-
-## 🧪 Testing
-
-Run the comprehensive test suite:
-
-```bash
-# Install development dependencies
-pip install -e .[dev]
-
-# Run tests
-pytest tests/
-
-# Run with coverage
-pytest tests/ --cov=templatematchingpy --cov-report=html
-```
-
-Test coverage includes:
-- Unit tests for all core functions
-- Integration tests with synthetic data
-- Edge case and error handling tests
-- Performance regression tests
-
-## 🏁 Performance Guidelines
-
-### Template Selection
-- **Size**: 32-128 pixels square typically optimal
-- **Features**: High contrast, distinctive patterns
-- **Location**: Avoid edges and homogeneous regions
-
-### Speed Optimization
-```python
-# For faster processing
-config = AlignmentConfig(
-    method=5,
-    search_area=30,     # Restrict search area
-    subpixel=False      # Disable sub-pixel precision
-)
-```
-
-### Memory Management
-```python
-# For large stacks, process in chunks
-def process_large_stack(large_stack, chunk_size=50):
-    results = []
-    for i in range(0, len(large_stack), chunk_size):
-        chunk = large_stack[i:i+chunk_size]
-        aligned_chunk, displacements = register_stack(chunk, bbox)
-        results.append((aligned_chunk, displacements))
-    return results
-```
-
-## 🎓 Scientific Background
-
-This implementation is based on the template matching methods described in:
-
-> **Multi-template matching: a versatile tool for object-localization in microscopy images**  
-> Laurent Thomas, Jochen Gehrig  
-> *BMC Bioinformatics* 21, 44 (2020)  
-> https://doi.org/10.1186/s12859-020-3363-7
-
-### Original ImageJ Plugin
-
-This Python implementation replicates the functionality of the ImageJ/Fiji plugins:
-
-- **Template Matching**: https://sites.google.com/site/qingzongtseng/template-matching-ij-plugin
-- **Multi-Template Matching**: https://github.com/multi-template-matching/MultiTemplateMatching-Fiji
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [contributing guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-
-```bash
-git clone https://github.com/yourusername/TemplateMatchingPy.git
-cd TemplateMatchingPy
-pip install -e .[dev]
-```
-
-### Code Quality
-
-```bash
-# Format code
-black templatematchingpy/
-
-# Type checking  
-mypy templatematchingpy/
-
-# Linting
-flake8 templatematchingpy/
-```
-
 ## License
 
 This project is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2) - see the [LICENSE](LICENSE) file for details.
@@ -263,10 +163,11 @@ If you use TemplateMatchingPy in your research, please cite:
 }
 ```
 
-And the original research:
-1. Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. *Lab on a Chip* 11, 2231 (2011).
-2. Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. *PNAS* (2012). [doi:10.1073/pnas.1106377109](https://doi.org/10.1073/pnas.1106377109)
-3. Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. [http://tel.archives-ouvertes.fr/tel-00622264](http://tel.archives-ouvertes.fr/tel-00622264)
+This implementation is based on the template matching methods described in the original research:
+1. Thomas, L. & Gehrig, J. Multi-template matching: a versatile tool for object-localization in microscopy images. *BMC Bioinformatics* 21, 44 (2020). [https://doi.org/10.1186/s12859-020-3363-7](https://doi.org/10.1186/s12859-020-3363-7)
+2. Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. *Lab on a Chip* 11, 2231 (2011).
+3. Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. *PNAS* (2012). [doi:10.1073/pnas.1106377109](https://doi.org/10.1073/pnas.1106377109)
+4. Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. [http://tel.archives-ouvertes.fr/tel-00622264](http://tel.archives-ouvertes.fr/tel-00622264)
 
 
 ## Related Projects
@@ -277,7 +178,6 @@ And the original research:
 - [OpenCV](https://opencv.org/): Computer vision library
 - [Qingzong Tseng github repo](https://github.com/qztseng/imagej_plugins)
 - [Laurent Thomas github repo](https://github.com/multi-template-matching/MultiTemplateMatching-Fiji/tree/master)
-
 
 ---
 
