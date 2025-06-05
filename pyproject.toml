@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "templatematchingpy"
+version = "1.0.0"
+description = "Python implementation of ImageJ template matching and stack alignment"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "EUPL-1.2"}
+authors = [
+    {name = "TemplateMatchingPy Contributors", email = "santiago.canomuniz@unibas.ch"}
+]
+maintainers = [
+    {name = "TemplateMatchingPy Contributors", email = "santiago.canomuniz@unibas.ch"}
+]
+keywords = [
+    "image processing",
+    "template matching", 
+    "image alignment",
+    "image registration",
+    "microscopy",
+    "computer vision",
+    "opencv",
+    "imagej",
+    "fiji"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8", 
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "numpy>=1.19.0",
+    "opencv-python>=4.5.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "black",
+    "flake8", 
+    "mypy"
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-parser"
+]
+
+[project.urls]
+Homepage = "https://github.com/phisanti/TemplateMatchingPy"
+Documentation = "https://github.com/phisanti/TemplateMatchingPy/docs"
+Repository = "https://github.com/phisanti/TemplateMatchingPy"
+"Bug Tracker" = "https://github.com/phisanti/TemplateMatchingPy/issues"
+
+[tool.setuptools]
+packages = ["templatematchingpy", "templatematchingpy.core", "templatematchingpy.utils"]
+
+[tool.setuptools.package-data]
+templatematchingpy = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--verbose",
+    "--cov=templatematchingpy",
+    "--cov-report=term-missing",
+    "--cov-report=html"
+]
