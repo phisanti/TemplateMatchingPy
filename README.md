@@ -4,12 +4,13 @@
 [![OpenCV](https://img.shields.io/badge/opencv-4.5+-green.svg)](https://opencv.org/)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen.svg)](https://github.com/yourusername/TemplateMatchingPy)
 
-**TemplateMatchingPy** is a Python implementation of the popular ImageJ/Fiji template matching and stack alignment plugins originally developed by Qingzong Tseng, providing a programmatic, GUI-free interface for template matching and image stack alignment with sub-pixel precision designed specifically for microscopy workflows. Key features include multiple OpenCV correlation methods (TM_SQDIFF, TM_CCORR, TM_CCOEFF variants), sub-pixel precision through Gaussian peak fitting for enhanced alignment accuracy, and flexible configuration options including customizable search areas, interpolation methods, and precision settings.
+**TemplateMatchingPy** is a Python implementation of the popular ImageJ/Fiji template matching and stack alignment plugins originally developed by [Qingzong Tseng](https://sites.google.com/site/qingzongtseng/imagejplugins), providing a programmatic, GUI-free interface for template matching and image stack alignment with sub-pixel precision designed specifically for microscopy workflows. Key features include multiple OpenCV correlation methods (TM_SQDIFF, TM_CCORR, TM_CCOEFF variants), sub-pixel precision through Gaussian peak fitting for enhanced alignment accuracy, and flexible configuration options including customizable search areas, interpolation methods, and precision settings.
 
 This registration package is limited to Translation operations (Movements in the X-Y axis), which makes it suitable for registering time-lapses where the main image is drifting. It helps stabilising the image across time-frames. Below you can see a demostration of the capabilities of this package:
 
-![Template Matching Alignment Demonstration](./examples/data/comparison.gif)
-
+<p align="center">
+  <img src="./examples/data/comparison.gif" alt="Template Matching Alignment Demonstration" loop="true" autoplay="true" style="display:block; margin:auto;" />
+</p>
 *Before and after alignment comparison showing drift correction in a microscopy time-lapse sequence. The left panel shows the original drifting images, while the right panel demonstrates the stabilized result after template matching alignment.*
 
 
@@ -238,51 +239,45 @@ mypy templatematchingpy/
 flake8 templatematchingpy/
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2) - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Qingzong Tseng**: Original ImageJ Template Matching plugin author
 - **Laurent Thomas & Jochen Gehrig**: Multi-Template Matching ImageJ plugin  
 - **ImageJ/Fiji Community**: Foundational image analysis tools
 - **OpenCV Contributors**: Computer vision library
 
-## 📬 Citation
+## Citation
 
 If you use TemplateMatchingPy in your research, please cite:
 
 ```bibtex
 @software{templatematchingpy,
   title={TemplateMatchingPy: Python implementation of ImageJ template matching and stack alignment},
-  author={TemplateMatchingPy Contributors},
+  author={TemplateMatchingPy Santiago Cano Muniz},
   year={2024},
-  url={https://github.com/yourusername/TemplateMatchingPy}
+  url={https://github.com/phisanti/TemplateMatchingPy}
 }
 ```
 
 And the original research:
+1. Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. *Lab on a Chip* 11, 2231 (2011).
+2. Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. *PNAS* (2012). [doi:10.1073/pnas.1106377109](https://doi.org/10.1073/pnas.1106377109)
+3. Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. [http://tel.archives-ouvertes.fr/tel-00622264](http://tel.archives-ouvertes.fr/tel-00622264)
 
-```bibtex
-@article{thomas2020multi,
-  title={Multi-template matching: a versatile tool for object-localization in microscopy images},
-  author={Thomas, Laurent and Gehrig, Jochen},
-  journal={BMC bioinformatics},
-  volume={21},
-  number={1},
-  pages={1--15},
-  year={2020},
-  publisher={Springer}
-}
-```
 
-## 🔗 Related Projects
+## Related Projects
 
 - [ImageJ](https://imagej.nih.gov/ij/): Java-based image processing
 - [Fiji](https://fiji.sc/): ImageJ distribution with plugins
 - [scikit-image](https://scikit-image.org/): Python image processing library
 - [OpenCV](https://opencv.org/): Computer vision library
+- [Qingzong Tseng github repo](https://github.com/qztseng/imagej_plugins)
+- [Laurent Thomas github repo](https://github.com/multi-template-matching/MultiTemplateMatching-Fiji/tree/master)
+
 
 ---
 
