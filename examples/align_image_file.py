@@ -21,8 +21,8 @@ print(f"Loaded stack with shape: {image_stack.shape}")
 
 # Get image dimensions and calculate centered bbox
 height, width = image_stack.shape[1], image_stack.shape[2]
-box_width = 1200
-box_height = 1200
+box_width = 100
+box_height = 100
 x = (width - box_width) // 2
 y = (height - box_height) // 2
 
