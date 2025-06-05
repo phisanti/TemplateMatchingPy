@@ -1,0 +1,20 @@
+site_name: TemplateMatchingPy
+site_description: Template matching library for Python
+site_url: https://templatematchingpy.readthedocs.io/
+
+nav:
+  - Home: index.md
+  - API Reference: api_reference.md
+
+theme:
+  name: material
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [templatematchingpy]
+
+markdown_extensions:
+  - codehilite
+  - admonition
