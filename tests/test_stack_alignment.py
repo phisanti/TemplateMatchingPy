@@ -97,11 +97,11 @@ class TestStackAligner(unittest.TestCase):
     def test_create_translation_matrix(self):
         """Test translation matrix creation."""
         matrix = self.aligner._create_translation_matrix(5.0, 3.0)
-        
-        expected = np.array([[1.0, 0.0, 5.0], 
-                            [0.0, 1.0, 3.0], 
-                            [0.0, 0.0, 1.0]], dtype=np.float32)
-        
+
+        expected = np.array(
+            [[1.0, 0.0, 5.0], [0.0, 1.0, 3.0], [0.0, 0.0, 1.0]], dtype=np.float32
+        )
+
         np.testing.assert_array_equal(matrix, expected)
         self.assertEqual(matrix.shape, (3, 3))
 

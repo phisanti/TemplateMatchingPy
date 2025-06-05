@@ -3,7 +3,9 @@ import numpy as np
 from templatematchingpy import register_stack, AlignmentConfig
 
 # Load multi-page TIFF stack
-ret, images = cv2.imreadmulti("./examples/data/example_image_stack.tiff", flags=cv2.IMREAD_GRAYSCALE)
+ret, images = cv2.imreadmulti(
+    "./examples/data/example_image_stack.tiff", flags=cv2.IMREAD_GRAYSCALE
+)
 
 if not ret:
     raise ValueError("Could not load TIFF stack")
@@ -20,7 +22,7 @@ print(f"Loaded stack with shape: {image_stack.shape}")
 # Get image dimensions and calculate centered bbox
 height, width = image_stack.shape[1], image_stack.shape[2]
 box_width = 1200
-box_height = 1200  
+box_height = 1200
 x = (width - box_width) // 2
 y = (height - box_height) // 2
 
