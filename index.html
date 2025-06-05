@@ -1,0 +1,772 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Template matching library for Python">
+      
+      
+      
+        <link rel="canonical" href="https://templatematchingpy.readthedocs.io/">
+      
+      
+      
+        <link rel="next" href="api_reference/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>TemplateMatchingPy</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#templatematchingpy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="TemplateMatchingPy" class="md-header__button md-logo" aria-label="TemplateMatchingPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TemplateMatchingPy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="TemplateMatchingPy" class="md-nav__button md-logo" aria-label="TemplateMatchingPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TemplateMatchingPy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alignmentconfig-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlignmentConfig Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-matching-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template Matching Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acknowledgments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Projects
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alignmentconfig-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlignmentConfig Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-matching-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template Matching Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acknowledgments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Projects
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="templatematchingpy">TemplateMatchingPy</h1>
+<p><a href="https://www.python.org/downloads/"><img alt="Python" src="https://img.shields.io/badge/python-3.7+-blue.svg" /></a>
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-EUPL%201.2-blue.svg" /></a>
+<a href="https://opencv.org/"><img alt="OpenCV" src="https://img.shields.io/badge/opencv-4.5+-green.svg" /></a>
+<a href="https://github.com/yourusername/TemplateMatchingPy"><img alt="Coverage" src="https://img.shields.io/badge/coverage-85%25-brightgreen.svg" /></a></p>
+<p><strong>TemplateMatchingPy</strong> is a Python implementation of the popular ImageJ/Fiji template matching and stack alignment plugins originally developed by <a href="https://sites.google.com/site/qingzongtseng/imagejplugins">Qingzong Tseng</a>, providing a programmatic, GUI-free interface for template matching and image stack alignment with sub-pixel precision designed specifically for microscopy workflows. Key features include multiple OpenCV correlation methods (TM_SQDIFF, TM_CCORR, TM_CCOEFF variants), sub-pixel precision through Gaussian peak fitting for enhanced alignment accuracy, and flexible configuration options including customizable search areas, interpolation methods, and precision settings.</p>
+<p>This registration package is limited to Translation operations (Movements in the X-Y axis), which makes it suitable for registering time-lapses where the main image is drifting. It helps stabilising the image across time-frames. Below you can see a demostration of the capabilities of this package:</p>
+<p align="center">
+  <img src="./examples/data/comparison.gif" alt="Template Matching Alignment Demonstration" loop="true" autoplay="true" style="display:block; margin:auto;" />
+</p>
+<p><em>Before and after alignment comparison showing drift correction in a microscopy time-lapse sequence. The left panel shows the original drifting images, while the right panel demonstrates the stabilized result after template matching alignment.</em></p>
+<h2 id="installation">Installation</h2>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/yourusername/TemplateMatchingPy.git
+</code></pre></div>
+
+<p>Or you can also build form source:</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/TemplateMatchingPy.git
+<span class="nb">cd</span><span class="w"> </span>TemplateMatchingPy
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div>
+
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li>Python ≥ 3.7</li>
+<li>NumPy ≥ 1.19.0  </li>
+<li>OpenCV ≥ 4.5.0</li>
+</ul>
+<h2 id="basic-usage">Basic Usage</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">templatematchingpy</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">register_stack</span><span class="p">,</span>
+    <span class="n">AlignmentConfig</span><span class="p">,</span>
+    <span class="n">create_test_image_stack</span><span class="p">,</span>
+    <span class="n">calculate_alignment_quality</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create test image stack (or load your own)</span>
+<span class="n">image_stack</span><span class="p">,</span> <span class="n">true_displacements</span> <span class="o">=</span> <span class="n">create_test_image_stack</span><span class="p">(</span>
+    <span class="n">n_slices</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">translation_range</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="c1"># Define template region (x, y, width, height)</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+
+<span class="c1"># Configure alignment</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">AlignmentConfig</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">subpixel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Perform alignment</span>
+<span class="n">aligned_stack</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">register_stack</span><span class="p">(</span>
+    <span class="n">image_stack</span><span class="o">=</span><span class="n">image_stack</span><span class="p">,</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+    <span class="n">reference_slice</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aligned </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span><span class="si">}</span><span class="s2"> slices&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean displacement: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">displacements</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> pixels&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="working-with-files">Working with Files</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">templatematchingpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_stack</span><span class="p">,</span> <span class="n">AlignmentConfig</span>
+
+<span class="c1"># Load multi-page TIFF stack</span>
+<span class="n">ret</span><span class="p">,</span> <span class="n">images</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imreadmulti</span><span class="p">(</span><span class="s2">&quot;./examples/data/example_image_stack.tiff&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not load TIFF stack&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert list of images to 3D numpy array [frames, height, width]</span>
+<span class="n">image_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Normalize to [0, 1] range if needed</span>
+<span class="k">if</span> <span class="n">image_stack</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
+    <span class="n">image_stack</span> <span class="o">=</span> <span class="n">image_stack</span> <span class="o">/</span> <span class="mf">255.0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded stack with shape: </span><span class="si">{</span><span class="n">image_stack</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get image dimensions and calculate centered bbox</span>
+<span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">image_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">box_width</span> <span class="o">=</span> <span class="mi">1200</span>
+<span class="n">box_height</span> <span class="o">=</span> <span class="mi">1200</span>  
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">box_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">box_height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+<span class="c1"># Define template region (x, y, width, height)</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">box_width</span><span class="p">,</span> <span class="n">box_height</span><span class="p">)</span>
+
+<span class="c1"># Configure and perform alignment</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">AlignmentConfig</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">subpixel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">aligned_stack</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">register_stack</span><span class="p">(</span>
+    <span class="n">image_stack</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">reference_slice</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+
+<span class="c1"># Save aligned stack as float32 multi-page TIFF</span>
+<span class="c1"># OpenCV requires list of individual frames for multi-page TIFF</span>
+<span class="n">aligned_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">aligned_stack</span><span class="p">]</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwritemulti</span><span class="p">(</span><span class="s2">&quot;aligned_stack.tiff&quot;</span><span class="p">,</span> <span class="n">aligned_frames</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alignment completed with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span><span class="si">}</span><span class="s2"> slices&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displacements: </span><span class="si">{</span><span class="n">displacements</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="configuration-options">Configuration Options</h2>
+<h3 id="alignmentconfig-parameters">AlignmentConfig Parameters</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">templatematchingpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignmentConfig</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">AlignmentConfig</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>                    <span class="c1"># Template matching method (0-5)</span>
+    <span class="n">search_area</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>               <span class="c1"># Search area in pixels (0 = full image)  </span>
+    <span class="n">subpixel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>               <span class="c1"># Enable sub-pixel precision</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_LINEAR</span>  <span class="c1"># Interpolation method</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h3 id="template-matching-methods">Template Matching Methods</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>OpenCV Constant</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>TM_SQDIFF</td>
+<td>Squared Difference</td>
+<td>High contrast templates</td>
+</tr>
+<tr>
+<td>1</td>
+<td>TM_SQDIFF_NORMED</td>
+<td>Normalized Squared Difference</td>
+<td>Robust matching</td>
+</tr>
+<tr>
+<td>2</td>
+<td>TM_CCORR</td>
+<td>Cross Correlation</td>
+<td>Bright templates</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TM_CCORR_NORMED</td>
+<td>Normalized Cross Correlation</td>
+<td>Illumination invariant</td>
+</tr>
+<tr>
+<td>4</td>
+<td>TM_CCOEFF</td>
+<td>Correlation Coefficient</td>
+<td>General purpose</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>TM_CCOEFF_NORMED</strong></td>
+<td><strong>Normalized Correlation Coefficient</strong></td>
+<td><strong>Recommended</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License</h2>
+<p>This project is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2) - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<ul>
+<li><strong>Qingzong Tseng</strong>: Original ImageJ Template Matching plugin author</li>
+<li><strong>Laurent Thomas &amp; Jochen Gehrig</strong>: Multi-Template Matching ImageJ plugin  </li>
+<li><strong>ImageJ/Fiji Community</strong>: Foundational image analysis tools</li>
+<li><strong>OpenCV Contributors</strong>: Computer vision library</li>
+</ul>
+<h2 id="citation">Citation</h2>
+<p>If you use TemplateMatchingPy in your research, please cite:</p>
+<div class="codehilite"><pre><span></span><code><span class="nc">@software</span><span class="p">{</span><span class="nl">templatematchingpy</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{TemplateMatchingPy: Python implementation of ImageJ template matching and stack alignment}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{TemplateMatchingPy Santiago Cano Muniz}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="p">=</span><span class="s">{https://github.com/phisanti/TemplateMatchingPy}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This implementation is based on the template matching methods described in the original research:
+1. Thomas, L. &amp; Gehrig, J. Multi-template matching: a versatile tool for object-localization in microscopy images. <em>BMC Bioinformatics</em> 21, 44 (2020). <a href="https://doi.org/10.1186/s12859-020-3363-7">https://doi.org/10.1186/s12859-020-3363-7</a>
+2. Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. <em>Lab on a Chip</em> 11, 2231 (2011).
+3. Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. <em>PNAS</em> (2012). <a href="https://doi.org/10.1073/pnas.1106377109">doi:10.1073/pnas.1106377109</a>
+4. Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. <a href="http://tel.archives-ouvertes.fr/tel-00622264">http://tel.archives-ouvertes.fr/tel-00622264</a></p>
+<h2 id="related-projects">Related Projects</h2>
+<ul>
+<li><a href="https://imagej.nih.gov/ij/">ImageJ</a>: Java-based image processing</li>
+<li><a href="https://fiji.sc/">Fiji</a>: ImageJ distribution with plugins</li>
+<li><a href="https://scikit-image.org/">scikit-image</a>: Python image processing library</li>
+<li><a href="https://opencv.org/">OpenCV</a>: Computer vision library</li>
+<li><a href="https://github.com/qztseng/imagej_plugins">Qingzong Tseng github repo</a></li>
+<li><a href="https://github.com/multi-template-matching/MultiTemplateMatching-Fiji/tree/master">Laurent Thomas github repo</a></li>
+</ul>
+<hr />
+<p><strong>TemplateMatchingPy</strong> - Bringing ImageJ template matching to Python workflows 🐍🔬</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
