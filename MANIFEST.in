@@ -1,0 +1,2 @@
+recursive-exclude examples/data *
+exclude examples/data/*

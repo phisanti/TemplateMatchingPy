@@ -62,12 +62,13 @@ docs = [
 
 [project.urls]
 Homepage = "https://github.com/phisanti/TemplateMatchingPy"
-Documentation = "https://github.com/phisanti/TemplateMatchingPy/docs"
+Documentation = "https://templatematchingpy.readthedocs.io/en/latest/"
 Repository = "https://github.com/phisanti/TemplateMatchingPy"
 "Bug Tracker" = "https://github.com/phisanti/TemplateMatchingPy/issues"
 
 [tool.setuptools]
 packages = ["templatematchingpy", "templatematchingpy.core", "templatematchingpy.utils"]
+include-package-data = false
 
 [tool.setuptools.package-data]
 templatematchingpy = ["py.typed"]
