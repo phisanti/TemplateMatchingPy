@@ -1,4 +1,25 @@
 # TemplateMatchingPy
+
+Welcome to TemplateMatchingPy! This Python library is a port of the Template Matching Fiji/ImageJ plug-in developed by [Qingzong Tseng](https://github.com/qztseng/imagej_plugins). It provides fast, robust image stack alignment using template matching and OpenCV. It is designed for simple, high-throughput registration tasks where speed and ease of use are critical.
+
+## Key Features
+- Fast translation-based image stack registration
+- Sub-pixel accuracy with Gaussian peak fitting
+- Simple API for both beginners and advanced users
+- Highly configurable alignment and matching options
+
+## Who Should Use This?
+- Researchers and engineers needing fast, simple translation alignment (e.g. Time-lapse imaging drift)
+- Not intended for complex registration, (e. g. non-rigid, scaled-rotation, affine, bilinear...). For such purposes, we encorage users to try [PyStackReg](https://pypi.org/project/pystackreg/)
+
+## Quick Start
+- [Installation Guide](getting-started/installation.md)
+- [5-Minute Quick Start](getting-started/quick-start.md)
+- [Examples](examples/basic-examples.md)
+
+---
+For full API reference, see [API Reference](api-reference/core-functions.md).
+
 [![Python](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-EUPL%201.2-blue.svg)](LICENSE)
 [![OpenCV](https://img.shields.io/badge/opencv-4.5+-green.svg)](https://opencv.org/)
@@ -8,20 +29,18 @@
 
 This registration package is limited to Translation operations (Movements in the X-Y axis), which makes it suitable for registering time-lapses where the main image is drifting. It helps stabilising the image across time-frames. Below you can see a demostration of the capabilities of this package:
 
-<p align="center">
-  <img src="./examples/data/comparison.gif" alt="Template Matching Alignment Demonstration" loop="true" autoplay="true" style="display:block; margin:auto;" />
-</p>
+![Template Matching Alignment Demonstration](../images/comparison.gif)
 *Before and after alignment comparison showing drift correction in a microscopy time-lapse sequence. The left panel shows the original drifting images, while the right panel demonstrates the stabilized result after template matching alignment.*
 
 
 ## Installation
 
 ```bash
-pip install git+https://github.com/yourusername/TemplateMatchingPy.git
+pip install git+https://github.com/phisanti/TemplateMatchingPy.git
 ```
 Or you can also build form source:
 ```bash
-git clone https://github.com/yourusername/TemplateMatchingPy.git
+git clone https://github.com/phisanti/TemplateMatchingPy.git
 cd TemplateMatchingPy
 pip install -e .
 ```
@@ -141,7 +160,7 @@ config = AlignmentConfig(
 
 ## License
 
-This project is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the European Union Public Licence v. 1.2 (EUPL-1.2) - see the [LICENSE](https://github.com/phisanti/TemplateMatchingPy/blob/master/LICENSE) file for details.
 
 ## Acknowledgments
 
@@ -164,10 +183,11 @@ If you use TemplateMatchingPy in your research, please cite:
 ```
 
 This implementation is based on the template matching methods described in the original research:
-1. Thomas, L. & Gehrig, J. Multi-template matching: a versatile tool for object-localization in microscopy images. *BMC Bioinformatics* 21, 44 (2020). [https://doi.org/10.1186/s12859-020-3363-7](https://doi.org/10.1186/s12859-020-3363-7)
-2. Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. *Lab on a Chip* 11, 2231 (2011).
-3. Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. *PNAS* (2012). [doi:10.1073/pnas.1106377109](https://doi.org/10.1073/pnas.1106377109)
-4. Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. [http://tel.archives-ouvertes.fr/tel-00622264](http://tel.archives-ouvertes.fr/tel-00622264)
+
+-  Tseng, Q. et al. A new micropatterning method of soft substrates reveals that different tumorigenic signals can promote or reduce cell contraction levels. *Lab on a Chip* 11, 2231 (2011).
+-  Tseng, Q. et al. Spatial Organization of the Extracellular Matrix Regulates Cell–cell Junction Positioning. *PNAS* (2012). [doi:10.1073/pnas.1106377109](https://doi.org/10.1073/pnas.1106377109)
+-  Tseng, Qingzong. 2011. "Study of multicellular architecture with controlled microenvironment". Ph.D. dissertation, Université de Grenoble. [http://tel.archives-ouvertes.fr/tel-00622264](http://tel.archives-ouvertes.fr/tel-00622264)
+- Thomas, L. & Gehrig, J. Multi-template matching: a versatile tool for object-localization in microscopy images. *BMC Bioinformatics* 21, 44 (2020). [https://doi.org/10.1186/s12859-020-3363-7](https://doi.org/10.1186/s12859-020-3363-7)
 
 
 ## Related Projects

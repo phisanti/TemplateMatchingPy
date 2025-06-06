@@ -168,17 +168,22 @@ def create_test_image_stack(
 def calculate_alignment_quality(
     displacements: List[Tuple[float, float]],
     reference_displacements: Optional[List[Tuple[float, float]]] = None,
+    invert_displacements: bool = False,
 ) -> dict:
     """Calculate quality metrics for stack alignment.
 
     Args:
         displacements: Calculated displacements
         reference_displacements: Known true displacements (for synthetic data)
+        invert_displacements: If True, invert displacements (multiply by -1)
 
     Returns:
         Dictionary with quality metrics
     """
     displacements_array = np.array(displacements)
+    
+    if invert_displacements:
+        displacements_array = -displacements_array
 
     metrics = {
         "mean_displacement": np.mean(np.sqrt(np.sum(displacements_array**2, axis=1))),
