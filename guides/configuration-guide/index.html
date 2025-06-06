@@ -1,0 +1,1153 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Template matching library for Python">
+      
+      
+      
+        <link rel="canonical" href="https://templatematchingpy.readthedocs.io/guides/configuration-guide/">
+      
+      
+        <link rel="prev" href="../template-matching-basics/">
+      
+      
+        <link rel="next" href="../performance-tuning/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Configuration Guide - TemplateMatchingPy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TemplateMatchingPy" class="md-header__button md-logo" aria-label="TemplateMatchingPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TemplateMatchingPy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TemplateMatchingPy" class="md-nav__button md-logo" aria-label="TemplateMatchingPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TemplateMatchingPy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template-matching-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Template Matching Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-when-to-change-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview: When to Change Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignmentconfig-parameters-and-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlignmentConfig Parameters and Defaults
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AlignmentConfig Parameters and Defaults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-opencv-matching-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      method (OpenCV Matching Method)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_area" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subpixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      subpixel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference Modes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounding-box-template-region-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding Box (Template Region) Selection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-custom-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Custom Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-static-vs-dynamic-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Static vs Dynamic Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-and-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting and Tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-tuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/core-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/stack-aligner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    StackAligner Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/template-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TemplateMatchingEngine Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/advanced-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-when-to-change-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview: When to Change Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignmentconfig-parameters-and-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlignmentConfig Parameters and Defaults
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AlignmentConfig Parameters and Defaults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-opencv-matching-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      method (OpenCV Matching Method)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_area" class="md-nav__link">
+    <span class="md-ellipsis">
+      search_area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subpixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      subpixel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference Modes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounding-box-template-region-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding Box (Template Region) Selection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-custom-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Custom Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-static-vs-dynamic-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Static vs Dynamic Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-and-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting and Tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configuration-guide">Configuration Guide</h1>
+<p>This guide provides a detailed explanation of all configuration options in TemplateMatchingPy, focusing on how to control and tune the alignment process for your specific data and use case. It is intended as a practical reference for users who want to understand and optimize the behavior of the library.</p>
+<hr />
+<h2 id="overview-when-to-change-settings">Overview: When to Change Settings</h2>
+<ul>
+<li><strong>Defaults:</strong> The default configuration is robust for most use cases. However, visual inspection of results is always recommended.</li>
+<li><strong>When to adjust:</strong> Change settings if you observe poor alignment, have special requirements (e.g., speed, precision), or are working with unusual data (e.g., very large images, low contrast, or drifting objects).</li>
+</ul>
+<hr />
+<h2 id="alignmentconfig-parameters-and-defaults">AlignmentConfig Parameters and Defaults</h2>
+<h3 id="method-opencv-matching-method"><code>method</code> (OpenCV Matching Method)</h3>
+<ul>
+<li><strong>Description:</strong> Selects the template matching algorithm.</li>
+<li><strong>Options:</strong><ul>
+<li><code>0</code>: TM_SQDIFF (Sum of squared differences)</li>
+<li><code>1</code>: TM_SQDIFF_NORMED (Normalized SSD)</li>
+<li><code>2</code>: TM_CCORR (Cross-correlation)</li>
+<li><code>3</code>: TM_CCORR_NORMED (Normalized cross-correlation)</li>
+<li><code>4</code>: TM_CCOEFF (Correlation coefficient)</li>
+<li><code>5</code>: TM_CCOEFF_NORMED (<strong>default, recommended</strong>)</li>
+</ul>
+</li>
+<li><strong>Best Practice:</strong> Use <code>TM_CCOEFF_NORMED</code> (5) for most applications. See <a href="https://docs.opencv.org/4.x/d4/dc6/tutorial_template_matching.html">OpenCV docs</a> for details.</li>
+</ul>
+<h3 id="search_area"><code>search_area</code></h3>
+<ul>
+<li><strong>Description:</strong> Number of pixels around the template region to search for matches. <code>0</code> means search the entire image (most robust, slowest).</li>
+<li><strong>When to change:</strong> Increase for large drifts, decrease for speed if drift is small.</li>
+</ul>
+<h3 id="subpixel"><code>subpixel</code></h3>
+<ul>
+<li><strong>Description:</strong> Enable sub-pixel registration using Gaussian fitting for higher accuracy.</li>
+<li><strong>Default:</strong> <code>True</code> (recommended for quantitative work)</li>
+<li><strong>When to change:</strong> Disable only for speed or if sub-pixel accuracy is not needed.</li>
+</ul>
+<h3 id="interpolation"><code>interpolation</code></h3>
+<ul>
+<li><strong>Description:</strong> OpenCV interpolation method for image warping (e.g., <code>cv2.INTER_LINEAR</code>).</li>
+<li><strong>Default:</strong> <code>cv2.INTER_LINEAR</code></li>
+<li><strong>When to change:</strong> Use <code>cv2.INTER_NEAREST</code> for binary masks, or other methods for special cases.</li>
+</ul>
+<hr />
+<h2 id="reference-modes">Reference Modes</h2>
+<h3 id="static-reference">Static Reference</h3>
+<ul>
+<li><strong>Use when:</strong> The image is drifting in the XY plane but remains fairly constant over time.</li>
+<li><strong>How it works:</strong> All slices are aligned to a single reference slice (usually the first or a manually chosen one).</li>
+</ul>
+<h3 id="dynamic-reference">Dynamic Reference</h3>
+<ul>
+<li><strong>Use when:</strong> The image is drifting and also changing (e.g., growing tissue, moving colony).</li>
+<li><strong>How it works:</strong> Each slice is aligned to the previous slice or a running average of previous slices. Set <code>reference_type='dynamic'</code> in the API.</li>
+</ul>
+<hr />
+<h2 id="bounding-box-template-region-selection">Bounding Box (Template Region) Selection</h2>
+<ul>
+<li><strong>Centered bounding box:</strong> Works well if the central region is present and stable across the stack.</li>
+<li><strong>ROI on object of interest:</strong> Preferred if you want to track or align a specific feature.</li>
+<li><strong>Tips:</strong><ul>
+<li>The template should be large enough to contain unique, high-contrast features.</li>
+<li>Avoid uniform or low-contrast regions.</li>
+<li>Visualize the template and search region to ensure they are appropriate.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-custom-configuration">Example: Custom Configuration</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">templatematchingpy.core.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignmentConfig</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">AlignmentConfig</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">search_area</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">subpixel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="example-static-vs-dynamic-reference">Example: Static vs Dynamic Reference</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Static reference (default)</span>
+<span class="n">aligned</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">register_stack</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">reference_slice</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">reference_type</span><span class="o">=</span><span class="s1">&#39;static&#39;</span><span class="p">)</span>
+
+<span class="c1"># Dynamic reference (align to previous slice)</span>
+<span class="n">aligned</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">register_stack</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">reference_slice</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">reference_type</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="troubleshooting-and-tips">Troubleshooting and Tips</h2>
+<ul>
+<li>If alignment fails, try increasing the template size or search area.</li>
+<li>For best results, the template should contain unique, high-contrast features.</li>
+<li>If your stack is very large, consider cropping or downsampling for speed.</li>
+<li>Sub-pixel registration is computationally efficient and usually improves alignment.</li>
+</ul>
+<hr />
+<p>See also: <a href="../template-matching-basics/">Template Matching Fundamentals</a>, <a href="../../api-reference/configuration/">API Reference: Configuration</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
