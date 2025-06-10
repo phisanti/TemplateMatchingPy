@@ -2,54 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://templatematchingpy.readthedocs.io/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/api-reference/configuration/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/api-reference/core-functions/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/api-reference/stack-aligner/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/api-reference/template-engine/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/api-reference/utilities/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/examples/advanced-examples/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/examples/basic-examples/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/getting-started/installation/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/getting-started/quick-start/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/guides/configuration-guide/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/guides/performance-tuning/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
     <url>
          <loc>https://templatematchingpy.readthedocs.io/guides/template-matching-basics/</loc>
-         <lastmod>2025-06-06</lastmod>
+         <lastmod>2025-06-10</lastmod>
     </url>
 </urlset>
