@@ -359,6 +359,7 @@ def register_stack(
     image_stack: np.ndarray,
     bbox: Tuple[int, int, int, int],
     reference_slice: int = 0,
+    reference_type: str = "static",
     config: Optional[AlignmentConfig] = None,
 ) -> Tuple[np.ndarray, List[Tuple[float, float]]]:
     """Register an image stack using template matching.
@@ -370,6 +371,8 @@ def register_stack(
         image_stack: 3D numpy array (slices, height, width)
         bbox: Template bounding box (x, y, width, height)
         reference_slice: Index of the reference slice (default: 0)
+        reference_type: 'static' uses fixed reference_slice,
+                        'dynamic' uses previous slice(s) as reference (default: "static")
         config: Alignment configuration (default: AlignmentConfig())
 
     Returns:
@@ -382,6 +385,6 @@ def register_stack(
         IndexError: If reference_slice is out of bounds
     """
     aligner = StackAligner(config)
-    aligned_stack = aligner.register_stack(image_stack, bbox, reference_slice)
+    aligned_stack = aligner.register_stack(image_stack, bbox, reference_slice, reference_type)
     displacements = aligner.get_alignment("alignment")
     return aligned_stack, displacements

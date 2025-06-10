@@ -16,7 +16,7 @@ with open(os.path.join(current_dir, "requirements.txt"), "r", encoding="utf-8") 
 
 setup(
     name="templatematchingpy",
-    version="1.0.0",
+    version="1.0.2",
     author="TemplateMatchingPy Contributors",
     author_email="santiago.canomuniz@unibas.ch",
     description="Python implementation of ImageJ template matching and stack alignment",
