@@ -108,3 +108,52 @@ class TestStackAligner(unittest.TestCase):
     def test_apply_translation_basic(self):
         """Test basic image translation."""
         image = np.zeros((50, 50), dtype=np.float32)
+
+    def test_register_stack_dynamic_mode(self):
+        """Test dynamic registration mode produces non-zero displacements."""
+        # Create a simple moving stack with known motion
+        stack = np.zeros((3, 50, 50), dtype=np.float32)
+        
+        # Add a pattern that moves between frames
+        pattern = np.ones((10, 10), dtype=np.float32)
+        stack[0, 20:30, 20:30] = pattern  # Frame 0: pattern at (20,20)
+        stack[1, 22:32, 23:33] = pattern  # Frame 1: pattern at (23,22)
+        stack[2, 25:35, 27:37] = pattern  # Frame 2: pattern at (27,25)
+        
+        bbox = (20, 20, 10, 10)  # Template region
+        
+        # Test dynamic mode
+        aligner = StackAligner()
+        aligned_stack = aligner.register_stack(
+            stack, bbox, reference_slice=-1, reference_type="dynamic"
+        )
+        displacements = aligner.get_alignment("alignment")
+        
+        # Verify we get expected number of displacements
+        self.assertEqual(len(displacements), 3)
+        
+        # First displacement should be (0,0)
+        self.assertEqual(displacements[0], (0.0, 0.0))
+        
+        # Subsequent displacements should be non-zero for moving data
+        non_zero_count = sum(1 for d in displacements[1:] if d != (0.0, 0.0))
+        self.assertGreater(non_zero_count, 0, "Dynamic mode should detect motion")
+
+    def test_register_stack_invalid_reference_type(self):
+        """Test that invalid reference_type values are rejected."""
+        stack = np.zeros((3, 50, 50), dtype=np.float32)
+        bbox = (10, 10, 20, 20)
+        
+        aligner = StackAligner()
+        
+        # Test invalid reference_type
+        with self.assertRaises(ValueError) as cm:
+            aligner.register_stack(stack, bbox, reference_type="invalid")
+        
+        self.assertIn("Invalid reference_type", str(cm.exception))
+        
+        # Test that "previous" is no longer supported (now it's "dynamic")
+        with self.assertRaises(ValueError) as cm:
+            aligner.register_stack(stack, bbox, reference_type="previous")
+        
+        self.assertIn("Invalid reference_type", str(cm.exception))

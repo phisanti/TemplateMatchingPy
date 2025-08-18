@@ -225,7 +225,7 @@ class StackAligner:
             image_stack: 3D numpy array (slices, height, width)
             bbox: Template bounding box (x, y, width, height)
             reference_type: 'static' uses fixed reference_slice,
-                        'dynamic' uses previous slice(s) as reference
+                        'dynamic' uses previous slice as reference (frame-to-frame)
             reference_slice: For static: slice index. For dynamic: negative offset (-1, -2, etc.)
         Returns:
             aligned_stack: Registered image stack
@@ -239,6 +239,10 @@ class StackAligner:
             raise ValueError(f"Expected 3D image stack, got {image_stack.ndim}D")
 
         n_slices = image_stack.shape[0]
+
+        # Validate reference_type
+        if reference_type not in ("static", "dynamic"):
+            raise ValueError(f"Invalid reference_type '{reference_type}'. Use 'static' or 'dynamic'.")
 
         # Validate reference_slice based on reference_type
         if reference_type == "static":
@@ -266,8 +270,6 @@ class StackAligner:
         self.translation_matrices = np.zeros((n_slices, 3, 3), dtype=np.float32)
 
         aligned_stack = image_stack.copy()
-        current_bbox = list(bbox)  # [x, y, w, h] - will be updated for dynamic
-        cumulative_dx, cumulative_dy = 0.0, 0.0
 
         for i in range(n_slices):
             if reference_type == "static":
@@ -282,7 +284,6 @@ class StackAligner:
                     bbox[1] : bbox[1] + bbox[3],
                     bbox[0] : bbox[0] + bbox[2],
                 ]
-                current_bbox = list(bbox)
             else:  # dynamic
                 if i == 0:
                     self.displacements.append((0.0, 0.0))
@@ -292,27 +293,15 @@ class StackAligner:
                     continue
 
                 # Use previous slice(s) as reference
-                ref_idx = max(
-                    0, i + reference_slice
-                )  # reference_slice is negative offset
-                x, y, w, h = current_bbox
+                ref_idx = max(0, i + reference_slice)  # reference_slice is negative offset
                 reference = aligned_stack[ref_idx, y : y + h, x : x + w]
 
             # Calculate displacement
-            dx, dy = self.align_slice(image_stack[i], reference, tuple(current_bbox))
+            dx, dy = self.align_slice(image_stack[i], reference, bbox)
 
-            if reference_type == "dynamic":
-                # Update cumulative bbox location
-                current_bbox[0] = int(bbox[0] - dx)
-                current_bbox[1] = int(bbox[1] - dx)
-
-                # Store cumulative displacement
-                self.displacements.append((cumulative_dx, cumulative_dy))
-                matrix = self._create_translation_matrix(cumulative_dx, cumulative_dy)
-            else:
-                self.displacements.append((dx, dy))
-                matrix = self._create_translation_matrix(dx, dy)
-
+            # Store frame-to-frame displacement (no accumulation)
+            self.displacements.append((dx, dy))
+            matrix = self._create_translation_matrix(dx, dy)
             self.translation_matrices[i] = matrix
             aligned_stack[i] = self.apply_translation(image_stack[i], matrix=matrix)
 
