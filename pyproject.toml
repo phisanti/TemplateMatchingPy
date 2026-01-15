@@ -59,6 +59,10 @@ docs = [
     "sphinx-rtd-theme",
     "myst-parser"
 ]
+examples = [
+    "matplotlib>=3.0.0",
+    "jupyter"
+]
 
 [project.urls]
 Homepage = "https://github.com/phisanti/TemplateMatchingPy"

@@ -17,7 +17,7 @@ from .utils import (
     calculate_alignment_quality,
 )
 
-__version__ = "1.0.0"
+__version__ = "1.0.3"
 __author__ = "TemplateMatchingPy Contributors"
 __email__ = "contact@example.com"
 
